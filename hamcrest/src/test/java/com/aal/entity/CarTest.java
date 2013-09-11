@@ -1,11 +1,13 @@
 package com.aal.entity;
 
 
-import com.all.matchers.CarMatcher;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.all.matchers.CarMatcher.hasMake;
 import static com.all.matchers.CarMatcher.hasNumberPlate;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class CarTest {
@@ -24,8 +26,15 @@ public class CarTest {
     }
 
     @Test
-    public void shouldHaveNumberPlate(){
+    public void shouldHaveNumberPlateAndMakeWithCarMatcher(){
         assertThat(car, hasNumberPlate("EF07RZV"));
+        assertThat(car, hasMake("Audi"));
+    }
+
+    @Test
+    public void shouldHaveNumberPlateAndMake(){
+        assertThat(car.getNumberPlate(), is(equalTo("EF07RZV")));
+        assertThat(car.getMake(), is("Audi"));
     }
 
 
